@@ -17,11 +17,11 @@ public class Data {
         return databaseReference.push().getKey();
     }
     public static void save(Car c){
-        databaseReference.child(db).child(c.getId()).setValue(c);
+        databaseReference.child(db).child(c.getLicensePlate()).setValue(c);
     }
 
     public static void  delete(Car c){
-        databaseReference.child(db).child(c.getId()).removeValue();
+        databaseReference.child(db).child(c.getLicensePlate()).removeValue();
         storageReference.child(c.getId()).delete();
     }
 

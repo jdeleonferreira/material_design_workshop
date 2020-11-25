@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Material Design Workshop</string>
+    <string name="action_settings">Configuracion</string>
+    <string name="first_fragment_label">Primer Fragmento</string>
+    <string name="second_fragment_label">Secundo Fragmento</string>
+    <string name="next">Siguiente</string>
+    <string name="previous">Anterior</string>
+    <string name="hello_first_fragment">Hola Primer Fragmento</string>
+    <string name="hello_second_fragment">Hola segundo fragmento. Arg: %1$s</string>
+    <string name="strCreateTitle">CREATE CAR</string>
+    <string name="strSelectPhoto">Select a photo</string>
+    <string name="strSuccessfulySave">Car saved successfully</string>
+    <string name="strLicensePlate">License plate</string>
+    <string name="strModel">Model</string>
+    <string name="strOwer">Owner</string>
+    <string name="strBtnSave">Save</string>
+    <string name="strBtnClear">Clear</string>
+    <string name="strDeleteTitle">Delete</string>
+    <string name="strDeleteCarMessage">¿You want to delete the car?</string>
+    <string name="strPositiveOption">Yes</string>
+    <string name="strNegativeOption">No</string>
+    <string name="strCarDetailTitle">CAR DETAIL</string>
+    <string name="strLicensePlateTitle">LICENSE PLATE</string>
+    <string name="strModelTitle">MODEL</string>
+    <string name="strOwnerTitle">OWNER</string>
+    <string name="strDelete">Delete</string>
+</resources>

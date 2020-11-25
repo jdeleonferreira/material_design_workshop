@@ -30,18 +30,19 @@ public class CarDetail extends AppCompatActivity {
         setContentView(R.layout.activity_car_detail);
 
         intent = getIntent();
-        Bundle person = intent.getBundleExtra("person");
+        Bundle car = intent.getBundleExtra("car");
 
-        lblLicensePlate = findViewById(R.id.lblItemLicensePlate);
-        lblModel = findViewById(R.id.lblItemModel);
-        lblOwner = findViewById(R.id.lblItemOwner);
-        photo = findViewById(R.id.imgItemPhoto);
+        lblLicensePlate = findViewById(R.id.lblLicensePlateValue);
+        lblModel = findViewById(R.id.lblModelValue);
+        lblOwner = findViewById(R.id.lblOwnerValue);
+        photo = findViewById(R.id.imgItemDetail);
 
         c = new Car(
-                person.getString("licensePlate"),
-                person.getString("model"),
-                person.getString("owner")
-        ); //person.getString("id")
+                car.getString("id"),
+                car.getString("licensePlate"),
+                car.getString("model"),
+                car.getString("owner")
+        );
 
         storageReference = FirebaseStorage.getInstance().getReference();
 

@@ -8,7 +8,8 @@ public class Car {
 
     public Car(){}
 
-    public Car(String licensePlate, String model, String owner) {
+    public Car(String id, String licensePlate, String model, String owner) {
+        this.id = id;
         this.licensePlate = licensePlate;
         this.model = model;
         Owner = owner;

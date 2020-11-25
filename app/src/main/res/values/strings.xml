@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MaterialDesignWorkshop</string>
+    <string name="app_name">Taller Material Design</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -21,4 +21,9 @@
     <string name="strDeleteCarMessage">¿Desea eliminar el auto?</string>
     <string name="strPositiveOption">Si</string>
     <string name="strNegativeOption">No</string>
+    <string name="strCarDetailTitle">DETALLE AUTO</string>
+    <string name="strLicensePlateTitle">PLACA</string>
+    <string name="strModelTitle">MODELO</string>
+    <string name="strOwnerTitle">PROPIETARIO</string>
+    <string name="strDelete">Eliminar</string>
 </resources>
