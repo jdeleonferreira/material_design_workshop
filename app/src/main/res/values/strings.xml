@@ -17,4 +17,8 @@
     <string name="strOwer">Propietario</string>
     <string name="strBtnSave">Guardar</string>
     <string name="strBtnClear">Limpiar</string>
+    <string name="strDeleteTitle">Eliminar</string>
+    <string name="strDeleteCarMessage">¿Desea eliminar el auto?</string>
+    <string name="strPositiveOption">Si</string>
+    <string name="strNegativeOption">No</string>
 </resources>

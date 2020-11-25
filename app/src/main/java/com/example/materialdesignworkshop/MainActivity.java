@@ -30,19 +30,44 @@ public class MainActivity extends AppCompatActivity implements CarAdapter.OnPers
     private LinearLayoutManager llm;
     private ArrayList<Car> cars;
     private DatabaseReference databaseReference;
-    private String db = "People";
+    private String db = "Cars";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        list = findViewById(R.id.lstCars);
+
+        cars = new ArrayList<Car>();
+        llm = new LinearLayoutManager(this);
+        adapter = new CarAdapter(cars, this);
+        llm.setOrientation(RecyclerView.VERTICAL);
+
+        list.setLayoutManager(llm);
+        list.setAdapter(adapter);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(db).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cars.clear();
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                        Car c = snapshot.getValue(Car.class);
+                        cars.add(c);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                Data.setCars(cars);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

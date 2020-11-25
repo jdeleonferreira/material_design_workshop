@@ -25,7 +25,7 @@ public class Data {
         storageReference.child(c.getId()).delete();
     }
 
-    public static void setPeople(ArrayList<Car> cars){
+    public static void setCars(ArrayList<Car> cars){
         cars = cars;
     }
 

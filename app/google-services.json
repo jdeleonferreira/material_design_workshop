@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1045294993880",
+    "firebase_url": "https://cars-8032d.firebaseio.com",
+    "project_id": "cars-8032d",
+    "storage_bucket": "cars-8032d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045294993880:android:820c16464c2422d2f262ad",
+        "android_client_info": {
+          "package_name": "com.example.materialdesignworkshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045294993880-4rho29k4u59oe7lgh8vv567vb7d16i13.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-VxFqc-qE_vPdauLsx612HUuTw8LRC2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045294993880-4rho29k4u59oe7lgh8vv567vb7d16i13.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
