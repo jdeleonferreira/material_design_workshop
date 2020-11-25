@@ -46,9 +46,8 @@ public class CreateCar extends AppCompatActivity {
         c.setModel(this.model.getText().toString());
         c.setOwner(this.owner.getText().toString());
 
-
         c.save();
-        updatePhoto(Data.getId());
+        updatePhoto(c.getId());
         clear();
         imp.hideSoftInputFromWindow(this.licensePlate.getWindowToken(),0);
 
