@@ -27,4 +27,5 @@
     <string name="strOwnerTitle">PROPIETARIO</string>
     <string name="strDelete">Eliminar</string>
     <string name="strAlreadyExist">Esta placa ya existe</string>
+    <string name="strRequiredFiled">Campo requerido</string>
 </resources>

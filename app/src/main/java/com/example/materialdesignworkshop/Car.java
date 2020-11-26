@@ -47,9 +47,7 @@ public class Car {
         Owner = owner;
     }
 
-    public void save(){
-        Data.save(this);
-    }
+    public void save(){ Data.save(this); }
 
     public  void delete(){
         Data.delete(this);

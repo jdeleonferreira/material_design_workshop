@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -46,38 +47,40 @@ public class CreateCar extends AppCompatActivity {
     }
 
     public void save(View v){
-        c = new Car();
-        InputMethodManager imp = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(validate()) {
+            c = new Car();
+            InputMethodManager imp = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        c.setId(Data.getId());
-        c.setLicensePlate(this.licensePlate.getText().toString());
-        c.setModel(this.model.getText().toString());
-        c.setOwner(this.owner.getText().toString());
+            c.setId(Data.getId());
+            c.setLicensePlate(this.licensePlate.getText().toString());
+            c.setModel(this.model.getText().toString());
+            c.setOwner(this.owner.getText().toString());
 
-        Query carRef = dbRef.child("Cars").orderByChild("licensePlate").equalTo(c.getLicensePlate());
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
-                    c.save();
-                    updatePhoto(c.getId());
-                    clear();
-                    imp.hideSoftInputFromWindow(licensePlate.getWindowToken(), 0);
-                    Snackbar.make(v, R.string.strSuccessfulySave, Snackbar.LENGTH_LONG).show();
-                }else{
-                    Snackbar.make(v, R.string.strAlreadyExist, Snackbar.LENGTH_LONG).show();
-                    licensePlate.setError(getString(R.string.strAlreadyExist));
-                    licensePlate.requestFocus();
+            Query carRef = dbRef.child("Cars").orderByChild("licensePlate").equalTo(c.getLicensePlate());
+            ValueEventListener eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()) {
+                        c.save();
+                        updatePhoto(c.getId());
+                        clear();
+                        imp.hideSoftInputFromWindow(licensePlate.getWindowToken(), 0);
+                        Snackbar.make(v, R.string.strSuccessfulySave, Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(v, R.string.strAlreadyExist, Snackbar.LENGTH_LONG).show();
+                        licensePlate.setError(getString(R.string.strAlreadyExist));
+                        licensePlate.requestFocus();
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        };
+                }
+            };
 
-        carRef.addListenerForSingleValueEvent(eventListener);
+            carRef.addListenerForSingleValueEvent(eventListener);
+        }
 
     }
 
@@ -118,5 +121,32 @@ public class CreateCar extends AppCompatActivity {
                 photo.setImageURI(uri);
             }
         }
+    }
+
+    public boolean validate(){
+        if(licensePlate.getText().toString().isEmpty()){
+            licensePlate.setError(getString(R.string.strRequiredFiled));
+            licensePlate.requestFocus();
+            return false;
+        }
+
+        if(model.getText().toString().isEmpty()){
+            model.setError(getString(R.string.strRequiredFiled));
+            model.requestFocus();
+            return false;
+        }
+
+        if(owner.getText().toString().isEmpty()){
+            owner.setError(getString(R.string.strRequiredFiled));
+            owner.requestFocus();
+            return false;
+        }
+
+        if(uri == null){
+            Toast.makeText(this, getString(R.string.strSelectPhoto), Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
     }
 }

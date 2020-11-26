@@ -24,18 +24,18 @@ public class Data {
     public static String getId(){
         return databaseReference.push().getKey();
     }
+
     public static void save(Car c){
-        databaseReference.child(db).child(c.getLicensePlate()).push().setValue(c);
+        databaseReference.child(db).child(c.getId()).setValue(c);
     }
 
     public static void  delete(Car c){
-        databaseReference.child(db).child(c.getLicensePlate()).removeValue();
+        databaseReference.child(db).child(c.getId()).removeValue();
         storageReference.child(c.getId()).delete();
     }
 
     public static void setCars(ArrayList<Car> cars){
         cars = cars;
     }
-
 
 }
