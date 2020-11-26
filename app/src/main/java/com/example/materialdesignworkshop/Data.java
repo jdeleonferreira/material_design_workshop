@@ -1,7 +1,15 @@
 package com.example.materialdesignworkshop;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.SnapshotHolder;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -17,7 +25,7 @@ public class Data {
         return databaseReference.push().getKey();
     }
     public static void save(Car c){
-        databaseReference.child(db).child(c.getLicensePlate()).setValue(c);
+        databaseReference.child(db).child(c.getLicensePlate()).push().setValue(c);
     }
 
     public static void  delete(Car c){
@@ -28,7 +36,6 @@ public class Data {
     public static void setCars(ArrayList<Car> cars){
         cars = cars;
     }
-
 
 
 }

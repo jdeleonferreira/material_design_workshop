@@ -1,5 +1,6 @@
 package com.example.materialdesignworkshop;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -12,6 +13,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -23,6 +30,7 @@ public class CreateCar extends AppCompatActivity {
     private Uri uri;
     private Car c;
     private StorageReference storageReference;
+    private DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +54,30 @@ public class CreateCar extends AppCompatActivity {
         c.setModel(this.model.getText().toString());
         c.setOwner(this.owner.getText().toString());
 
-        c.save();
-        updatePhoto(c.getId());
-        clear();
-        imp.hideSoftInputFromWindow(this.licensePlate.getWindowToken(),0);
+        Query carRef = dbRef.child("Cars").orderByChild("licensePlate").equalTo(c.getLicensePlate());
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()){
+                    c.save();
+                    updatePhoto(c.getId());
+                    clear();
+                    imp.hideSoftInputFromWindow(licensePlate.getWindowToken(), 0);
+                    Snackbar.make(v, R.string.strSuccessfulySave, Snackbar.LENGTH_LONG).show();
+                }else{
+                    Snackbar.make(v, R.string.strAlreadyExist, Snackbar.LENGTH_LONG).show();
+                    licensePlate.setError(getString(R.string.strAlreadyExist));
+                    licensePlate.requestFocus();
+                }
+            }
 
-        Snackbar.make(v, R.string.strSuccessfulySave, Snackbar.LENGTH_LONG).show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        carRef.addListenerForSingleValueEvent(eventListener);
 
     }
 

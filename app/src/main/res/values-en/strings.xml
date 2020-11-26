@@ -25,4 +25,5 @@
     <string name="strModelTitle">MODEL</string>
     <string name="strOwnerTitle">OWNER</string>
     <string name="strDelete">Delete</string>
+    <string name="strAlreadyExist">This license plate already exists</string>
 </resources>
